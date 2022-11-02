@@ -20,8 +20,7 @@ def validate_book(book_id):
 @books_bp.route("", methods=["POST"])
 def create_book():
     request_body = request.get_json()
-    new_book = Book(title=request_body["title"],
-                    description=request_body["description"])
+    new_book = Book.from_dict(request_body)
 
     db.session.add(new_book)
     db.session.commit()
@@ -40,6 +39,7 @@ def read_all_books():
     books_response = []
     for book in books:
         books_response.append(book.to_dict())
+
     return jsonify(books_response)
 
 @books_bp.route("/<book_id>", methods=["GET"])
