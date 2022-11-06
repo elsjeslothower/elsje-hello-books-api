@@ -1,5 +1,5 @@
 from werkzeug.exceptions import HTTPException
-from app.book_routes import validate_model
+from routes.book_routes import validate_model
 from app.models.book import Book
 import pytest
 
